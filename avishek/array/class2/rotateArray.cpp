@@ -1,4 +1,5 @@
 #include<iostream>
+#include <bits/stdc++.h>
 using namespace std;
 
 
@@ -47,3 +48,41 @@ int main()
 
     return 0;
 }
+
+
+
+
+
+
+
+
+
+
+
+ // ==================================== LEETCODE PROBLEM ====================================
+
+ class Solution {
+public:
+    void rotate(vector<int>& nums, int k) {
+        int n = nums.size();
+        int finalShift = k % n;
+        if (finalShift == 0) return;
+
+        vector<int> temp(finalShift);
+
+        // Correctly store the last `finalShift` elements
+        for (int i = 0; i < finalShift; i++) {
+            temp[i] = nums[n - finalShift + i];
+        }
+
+        // Shift elements to the right without negative indexing
+        for (int i = n - 1; i >= finalShift; i--) {
+            nums[i] = nums[i - finalShift];
+        }
+
+        // Copy back stored elements
+        for (int i = 0; i < finalShift; i++) {
+            nums[i] = temp[i];
+        }
+    }
+};
